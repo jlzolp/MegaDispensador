@@ -2,7 +2,7 @@
 #include <String.h>
 #include <SPI.h>
 //#include <SD.h>                           //desconocido no se esta usando
-#include <Adafruit_PWMServoDriver.h>
+//#include <Adafruit_PWMServoDriver.h>
 #include <Adafruit_Fingerprint.h>
 #include <SoftwareSerial.h>                     //desconocido no se esta usando
 #define DEBUG(a) Serial.println(a);
