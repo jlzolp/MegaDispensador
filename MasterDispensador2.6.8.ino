@@ -2,16 +2,14 @@
 #include <String.h>
 #include <SPI.h>
 //#include <SD.h>                           //desconocido no se esta usando
-//#include <Adafruit_PWMServoDriver.h>
 #include <Adafruit_Fingerprint.h>
-#include <SoftwareSerial.h>                     //desconocido no se esta usando
+#include <SoftwareSerial.h>                   
 #define DEBUG(a) Serial.println(a);
 
 SoftwareSerial mySerial(2, 3);
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 uint8_t id;
 
-//Adafruit_PWMServoDriver Tool = Adafruit_PWMServoDriver(0x40);  //0 0 0 0 0
 
 //////////////******** variables de entrada de datos String
 boolean stringComplete = false;
@@ -44,10 +42,6 @@ int nCantidad = 0;
 int nID       = 0;
 int nTool     = 0;
 
-///////*****************variable de control para servos
-//unsigned int pos0 = 172; // ancho de pulso en cuentas para pocicion 0°
-//unsigned int pos180 = 700; // ancho de pulso en cuentas para la pocicion 180°
-/////////////////********************
 //******************pines de Entradas y Salidas ********----/////////////////////////////
 int nLedRojo = 12;
 int nLedAmarillo = 12;
@@ -60,7 +54,6 @@ void setup(){
   Wire.onReceive(receiveEvent);
   Serial.begin(9600);
   finger.begin(57600);
-  //Tool.begin();
   Configuracion();
   Serial.println("1234.......");
 } 
@@ -89,7 +82,7 @@ void loop(){
         case 3:  
                 Serial.println("Dispensador = 1");
                 Cartuchos("1",sCartucho,sCantidad);
-                Buffer(0);
+                Buzzer(0);
                 break;
         case 4:
                 Serial.println("Surtir = 2");
@@ -102,8 +95,8 @@ void loop(){
                 break;
         case 6:      
                 Serial.println("Sonido nCantidad = Tiempo ");
-                BufferTimer(nCantidad);
-                digitalWrite(12,LOW);
+                BuzzerTimer(nCantidad);
+                //digitalWrite(12,LOW);
                 break;
         case 7:
                 Serial.println("Herramienta ");

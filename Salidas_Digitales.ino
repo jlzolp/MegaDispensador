@@ -23,17 +23,17 @@ boolean bHacer;
             digitalWrite(nBuzzer,bHacer);
             break;
         default:
-            Serial.println("X");
+            Serial.println("X salidas digitales");
             break;
   }
   return;
 }
-void Buffer(int nValor){
+void Buzzer(int nValor){
   Salidas(5,nValor);
   return;
 }
 
-void BufferTimer(int nTimer){
+void BuzzerTimer(int nTimer){
   //Salidas(5,0);
  // delay (nTimer);
   Salidas(5,1);
