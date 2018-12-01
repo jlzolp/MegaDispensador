@@ -5,7 +5,7 @@ String sIdI2c="";
 char inCharRc=' ';
 String sStrRc="";
 int nCount = 0;
-String sDts = sQHacer+";"+sCart+";"+sCant+";1000; ;";
+String sDts = sQHacer+";"+sCart+";"+sCant+";";
 if(sCart == " " or sCant == " " or sCart == "" or sCant == "" ){
     Serial.println("X");  }
 else {
@@ -44,6 +44,7 @@ else {
       inCharRc = (char)Serial.read();//  cancelar no debe llevar salto de linea
       if (inCharRc == 'X'){
           Serial.println(nCount);
+          I2CTX(nCartucho,"X");
           inCharRc=' ';
           stringComplete = false;
           inputString = "";

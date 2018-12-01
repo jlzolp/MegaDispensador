@@ -14,7 +14,7 @@ boolean bHacer;
             digitalWrite(nLedRojo,bHacer);
             break;
         case 3:
-            digitalWrite(nLedAmarillo,LOW);
+            digitalWrite(nLedAmarillo,bHacer);
             break;
         case 4:
             Serial.println("Error");
@@ -30,6 +30,7 @@ boolean bHacer;
 }
 void Buzzer(int nValor){
   Salidas(5,nValor);
+  
   return;
 }
 

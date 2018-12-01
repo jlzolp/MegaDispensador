@@ -80,19 +80,18 @@ void loop(){
                 leer_huella();
                 break;
         case 3:  
-                Serial.println("Dispensador =  1 a 120");
+                Serial.println("Dispensador = 1");
                 Cartuchos("1",sCartucho,sCantidad);
                 Buzzer(0);
                 break;
         case 4:
-                Serial.println("Surtir = 1 a 120");
-                Cartuchos("2",sCartucho,sCantidad);
+                Serial.println("Surtir = 2");
+                 Cartuchos("2",sCartucho,sCantidad);
                 break;
         case 5:       
                 Serial.println("nCartucho = 1-VERDE,2-AMARILLO,3-ROJO");
                 Serial.println("nCantidad = 0-Apgado 1-Encender");
-                //Salidas(nCartucho,nCantidad); // 
-                //SalidaTorreta(121,sCartucho,sCantidad);
+                Salidas(nCartucho,nCantidad); // 
                 break;
         case 6:      
                 Serial.println("Sonido nCantidad = Tiempo ");
@@ -100,16 +99,13 @@ void loop(){
                 //digitalWrite(12,LOW);
                 break;
         case 7:
-                Serial.println("Herramientas = 1 ... 18,Abrir 1 Cerrar 0 ");
-                Herramientas_Pines_Salida(sCartucho,sCantidad);
+                Serial.println("Herramienta ");
                 break;   
         case 8:       
-                Serial.println("Herramientas = 1 ... 18,Estado Regresa"  );
-                Serial.println("Envia un String por serial que es X o E "  );
-                Herramientas_Pines_Entrada(sCartucho);
+                Serial.println("Case 8");
                 break; 
         case 9:       
-                Serial.println("Herramientas de  ");
+                Serial.println("Case 9 ");
                 break;                    
         case 10:
                 Serial.println("Reiniciar");
