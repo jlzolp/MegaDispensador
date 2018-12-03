@@ -23,7 +23,9 @@ void Herramientas_Principal_Entrada(String sNumr){
   if(sNumr == " " or  sNumr == "" ){
     Serial.println("X");  }
   else {
-       EntradaITwoC(121,sNumr);
+    if(sNumr == 1 or sNumr == 2 or sNumr == 3){
+            EntradaITwoC(121,sNumr); 
+    }
   }
   return;
 }
