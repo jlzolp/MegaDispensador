@@ -5,13 +5,16 @@ String sIdI2c="";
 char inCharRc=' ';
 String sStrRc="";
 int nCount = 0;
+int nCartucho = sCart.toInt();
+int nCantidad = sCant.toInt();
 String sDts = sQHacer+";"+sCart+";"+sCant+";";
+
 if(sCart == " " or sCant == " " or sCart == "" or sCant == "" ){
     Serial.println("X");  }
 else {
   //Serial.println(nCartucho);
   I2CTX(nCartucho,sDts);
-  Salidas(5,0);
+  //Salidas(5,0);
   while(bCiclo){
     if(I2Completdo){
         I2Completdo=false;
@@ -24,7 +27,8 @@ else {
             bCiclo = false; 
           }      
           if (sStrI2c == "E"){
-            Buzzer(1);
+            BuzzerITwoC("1","0");
+            //Buzzer(1);
             sStrI2c="";
             nCantidad = nCantidad-1;
             nCount = nCount + 1;
@@ -51,7 +55,8 @@ else {
           bCiclo = false;
       }
       delay(1); 
-      Buzzer(0);
+      //Buzzer(0);
+      BuzzerITwoC("0","0"); 
     }
   }
   return; 

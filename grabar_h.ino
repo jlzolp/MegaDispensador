@@ -1,6 +1,7 @@
 
-void grabar_huella(int iD)
+void grabar_huella(String sID)
 {
+  int iD = sID.toInt();
   id = iD;
   if (id == 0) {
      return;

@@ -19,34 +19,34 @@ boolean I2Completdo = false;
 String sDatI2c = "";
 
 ///Variables I2C
-String sAccI2c= "";
-String sCantI2c = "";
-String sSopI2c = "";
-String sTimI2c= "";
+//String sAccI2c= "";
+//String sCantI2c = "";
+//String sSopI2c = "";
+//String sTimI2c= "";
 
-int nAccI2c  = 0;
-int nCantI2c = 0;
-int nSopI2c  = 0;
-int nTimI2c  = 0;
+//int nAccI2c  = 0;
+//int nCantI2c = 0;
+//int nSopI2c  = 0;
+//int nTimI2c  = 0;
 
 //////////////////*********vairables de control
 String sAccion    = "";
 String sCartucho  = "";
 String sCantidad  = "";
-String sID        = "";
-String sTool      = "";
+//String sID        = "";
+//String sTool      = "";
 
 int nAccion   = 0;
-int nCartucho = 0;
-int nCantidad = 0;
-int nID       = 0;
-int nTool     = 0;
+//int nCartucho = 0;
+//int nCantidad = 0;
+//int nID       = 0;
+//int nTool     = 0;
 
 //******************pines de Entradas y Salidas ********----/////////////////////////////
-int nLedRojo = 12;
-int nLedAmarillo = 12;
-int nLedVerde = 12;
-int nBuzzer = 12;
+//int nLedRojo = 12;
+//int nLedAmarillo = 12;
+//int nLedVerde = 12;
+//int nBuzzer = 12;
 //////////*****************************\\\\\\\\\\\\\\\\\\\\
 
 void setup(){
@@ -55,7 +55,7 @@ void setup(){
   Serial.begin(9600);
   finger.begin(57600);
   Configuracion();
-  Serial.println("1234.......");
+  Serial.println("1");
 } 
 void loop(){
   if (stringComplete) {
@@ -66,49 +66,53 @@ void loop(){
     sCantidad = getValor(inputString, ';', 2); 
     
     nAccion   = sAccion.toInt(); 
-    nCartucho = sCartucho.toInt();       
-    nCantidad = sCantidad.toInt();
+    //nCartucho = sCartucho.toInt();       
+    //nCantidad = sCantidad.toInt();
     //cancelar no debe llevar salto de linea.
       switch (nAccion) {
         case 0:
-                Serial.println("Case 0");        
+                //Serial.println("0");        
                 break;
         case 1:
-                grabar_huella(nCartucho);
+                grabar_huella(sCartucho);
                 break;
         case 2:
                 leer_huella();
                 break;
         case 3:  
-                Serial.println("Dispensador = 1");
+                //Serial.println("Dispensador =  1 a 120");
                 Cartuchos("1",sCartucho,sCantidad);
-                Buzzer(0);
+                //Buzzer(0);
+                BuzzerITwoC("0","0"); //Activacion y Tiempo
                 break;
         case 4:
-                Serial.println("Surtir = 2");
-                 Cartuchos("2",sCartucho,sCantidad);
+                //Serial.println("Surtir = 1 a 120");
+                Cartuchos("2",sCartucho,sCantidad);
                 break;
         case 5:       
-                Serial.println("nCartucho = 1-VERDE,2-AMARILLO,3-ROJO");
-                Serial.println("nCantidad = 0-Apgado 1-Encender");
-                Salidas(nCartucho,nCantidad); // 
+                //Serial.println("nCartucho = 1-VERDE,2-AMARILLO,3-ROJO");
+                //Serial.println("nCantidad = 0-Apgado 1-Encender");
+                TorretaITwoC(sCartucho,sCantidad);
                 break;
-        case 6:      
-                Serial.println("Sonido nCantidad = Tiempo ");
-                BuzzerTimer(nCantidad);
-                //digitalWrite(12,LOW);
+        case 6: 
+                //Serial.println("nCartucho = ACtivo");     
+                //Serial.println("Sonido nCantidad = Tiempo ");
+                BuzzerITwoC(sCartucho,sCantidad);
                 break;
         case 7:
-                Serial.println("Herramienta ");
+                //Serial.println("Herramientas = 1 ... 18,Abrir 1 Cerrar 0 ");
+                Herramientas_Pines_Salida(sCartucho,sCantidad);
                 break;   
         case 8:       
-                Serial.println("Case 8");
+                //Serial.println("Herramientas = 1 ... 18,Estado Regresa"  );
+                //Serial.println("Envia un String por serial que es X o E "  );
+                Herramientas_Pines_Entrada(sCartucho);
                 break; 
         case 9:       
-                Serial.println("Case 9 ");
+                //Serial.println("Herramientas de  ");
                 break;                    
         case 10:
-                Serial.println("Reiniciar");
+                //Serial.println("Reiniciar");
                 delay(100);
                 asm("jmp 0x0000");
                 break;
@@ -118,8 +122,9 @@ void loop(){
     }
     sAccion="";
     sCartucho="";
-    nCantidad="";
+    sCantidad="";
     inputString = "";
+    sDatI2c = "";
   }
 }
 
