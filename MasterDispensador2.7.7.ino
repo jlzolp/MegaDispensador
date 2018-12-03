@@ -18,16 +18,6 @@ String inputString = "";
 boolean I2Completdo = false;
 String sDatI2c = "";
 
-///Variables I2C
-//String sAccI2c= "";
-//String sCantI2c = "";
-//String sSopI2c = "";
-//String sTimI2c= "";
-
-//int nAccI2c  = 0;
-//int nCantI2c = 0;
-//int nSopI2c  = 0;
-//int nTimI2c  = 0;
 
 //////////////////*********vairables de control
 String sAccion    = "";
@@ -37,16 +27,7 @@ String sCantidad  = "";
 //String sTool      = "";
 
 int nAccion   = 0;
-//int nCartucho = 0;
-//int nCantidad = 0;
-//int nID       = 0;
-//int nTool     = 0;
 
-//******************pines de Entradas y Salidas ********----/////////////////////////////
-//int nLedRojo = 12;
-//int nLedAmarillo = 12;
-//int nLedVerde = 12;
-//int nBuzzer = 12;
 //////////*****************************\\\\\\\\\\\\\\\\\\\\
 
 void setup(){
@@ -66,8 +47,6 @@ void loop(){
     sCantidad = getValor(inputString, ';', 2); 
     
     nAccion   = sAccion.toInt(); 
-    //nCartucho = sCartucho.toInt();       
-    //nCantidad = sCantidad.toInt();
     //cancelar no debe llevar salto de linea.
       switch (nAccion) {
         case 0:

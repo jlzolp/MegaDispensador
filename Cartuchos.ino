@@ -35,10 +35,6 @@ else {
             delay(500);
           }
         }
-        /*else
-        {
-          Serial.println("no es"); 
-        }*/
     }
       if (nCantidad <= 0){
           sDatI2c="";
@@ -54,8 +50,7 @@ else {
           inputString = "";
           bCiclo = false;
       }
-      delay(1); 
-      //Buzzer(0);
+      delay(1);
       BuzzerITwoC("0","0"); 
     }
   }

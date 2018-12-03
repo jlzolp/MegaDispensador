@@ -98,7 +98,6 @@ void Herramientas_Pines_Entrada(String sHert){
     case 6:
           //SalidaAll(122,sHerr,sEstad);
           EntradaITwoC(122,sHert);
-          //CicloDato(122);
           break;
     case 7:
           //SalidaAll(123,sHerr,sEstad);
