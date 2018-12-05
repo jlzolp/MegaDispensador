@@ -23,7 +23,9 @@ else {
         if(sIdI2c == sCart){
           if(sStrI2c== "X"){
             sStrI2c="";
-            Serial.println(nCount); 
+            Serial.print(sIdI2c);
+            Serial.print(";");
+            Serial.println(nCount);
             bCiclo = false; 
           }      
           if (sStrI2c == "E"){
@@ -38,11 +40,15 @@ else {
     }
       if (nCantidad <= 0){
           sDatI2c="";
+          Serial.print(sIdI2c);
+          Serial.print(";");
           Serial.println(nCount);
           bCiclo = false;
       }      
       inCharRc = (char)Serial.read();//  cancelar no debe llevar salto de linea
       if (inCharRc == 'X'){
+          Serial.print(sIdI2c);
+          Serial.print(";");
           Serial.println(nCount);
           I2CTX(nCartucho,"X");
           inCharRc=' ';

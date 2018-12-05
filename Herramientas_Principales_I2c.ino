@@ -1,6 +1,8 @@
 void TorretaITwoC(String sNumer,String sActivo){
   int nValor = sNumer.toInt();
-  if(sNumer == " " or  sNumer == "" ){
+  int nActv =  sActivo.toInt();
+  if(sNumer == " " or  sNumer == "" or nActv >= 3){
+    Serial.print(sNumer); 
     Serial.println("X");  }
   else {
      SalidaITwoC(121,sNumer,sActivo);
