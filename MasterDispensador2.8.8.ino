@@ -61,7 +61,7 @@ void loop(){
         case 3:  
                 //Serial.println("Dispensador =  1 a 120");
                 Cartuchos("1",sCartucho,sCantidad);
-                BuzzerITwoC("0","0"); //Activacion y Tiempo
+                //BuzzerITwoC("0","0"); //Activacion y Tiempo
                 break;
         case 4:
                 //Serial.println("Surtir = 1 a 120");
@@ -77,15 +77,15 @@ void loop(){
                 //Serial.println("Sonido nCantidad = Tiempo ");
                 BuzzerITwoC(sCartucho,sCantidad);
                 break;
-        case 7:
-                //Serial.println("Herramientas = 1 ... 18,Abrir 1 Cerrar 0 ");
-                Herramientas_Pines_Salida(sCartucho,sCantidad);
-                break;   
-        case 8:     
+        case 7:     
                 //Serial.println("nCartucho = cual de las dos herramientas son primncipal o secundaria");   
                 //Serial.println("Herramientas = 1 ... 18,Estado Regresa"  );
                 //Serial.println("Envia un String por serial que es X o E "  );
                 Herramientas_Entrada(sCartucho,sCantidad);
+                break; 
+        case 8:
+                //Serial.println("Herramientas = 1 ... 18,Abrir 1 Cerrar 0 ");
+                Herramientas_Pines_Salida(sCartucho,sCantidad);
                 break; 
         case 9:       
                 //Serial.println("Herramientas de  ");

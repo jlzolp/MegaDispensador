@@ -10,12 +10,12 @@ int nCantidad = sCant.toInt();
 String sDts = sQHacer+";"+sCart+";"+sCant+";";
 
 if(sCart == " " or sCant == " " or sCart == "" or sCant == "" ){
-    Serial.println("X");  }
+    Serial.print(sCart);
+    Serial.println(";X");  }
 else {
-  //Serial.println(nCartucho);
   I2CTX(nCartucho,sDts);
-  //Salidas(5,0);
   while(bCiclo){
+     
     if(I2Completdo){
         I2Completdo=false;
         sIdI2c   = getValor(sDatI2c,';',0);
@@ -23,21 +23,25 @@ else {
         if(sIdI2c == sCart){
           if(sStrI2c== "X"){
             sStrI2c="";
+            //sIdI2c="";
             Serial.print(sIdI2c);
             Serial.print(";");
             Serial.println(nCount);
             bCiclo = false; 
           }      
           if (sStrI2c == "E"){
-            BuzzerITwoC("1","0");
+            BuzzerITwoC("1","500");
             //Buzzer(1);
             sStrI2c="";
+            //sIdI2c="";
+            sDatI2c="";
             nCantidad = nCantidad-1;
             nCount = nCount + 1;
-            delay(500);
+            //Serial.println(nCantidad);
+            //delay(2000);
           }
         }
-    }
+      }
       if (nCantidad <= 0){
           sDatI2c="";
           Serial.print(sIdI2c);
@@ -45,11 +49,17 @@ else {
           Serial.println(nCount);
           bCiclo = false;
       }      
-      inCharRc = (char)Serial.read();//  cancelar no debe llevar salto de linea
+      inCharRc = (char)Serial.read();
       if (inCharRc == 'X'){
-          Serial.print(sIdI2c);
-          Serial.print(";");
-          Serial.println(nCount);
+          if (sIdI2c ==""){
+            Serial.print(sCart);
+            Serial.print(";");
+            Serial.println(nCount);           
+          }else {
+            Serial.print(sIdI2c);
+            Serial.print(";");
+            Serial.println(nCount);        
+          }
           I2CTX(nCartucho,"X");
           inCharRc=' ';
           stringComplete = false;
@@ -57,7 +67,6 @@ else {
           bCiclo = false;
       }
       delay(1);
-      BuzzerITwoC("0","0"); 
     }
   }
   return; 

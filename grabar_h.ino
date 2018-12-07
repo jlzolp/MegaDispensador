@@ -7,10 +7,10 @@ void grabar_huella(String sID)
      return;
   }
   
-getFingerprintEnroll();
+getFingerprintEnroll(sID);
 }
 
-uint8_t getFingerprintEnroll() {
+uint8_t getFingerprintEnroll(String sIds) {
  // uint8_t  x;
   int p = -1;
   
@@ -37,6 +37,7 @@ uint8_t getFingerprintEnroll() {
   p = finger.storeModel(id);
   
   if (p == FINGERPRINT_OK) {
+    Serial.print(sIds);
     Serial.println("E");
     return p;
     } else {
