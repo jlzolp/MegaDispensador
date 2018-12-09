@@ -1,54 +1,66 @@
 void TorretaITwoC(String sNumer,String sActiv){
   int nValor = sNumer.toInt();
   int nActv =  sActiv.toInt();
-  String  sDtsT = "T;"+sNumer+";"+sActiv+";";
+  String  sDtsT = "T;"+sNumer+";"+sActiv;
   if(sNumer == " " or  sNumer == "" or nActv >= 3){
-    Serial.print(sNumer); 
+    Serial.print("T"); 
     Serial.println(";X");  }
   else {
       I2CTX(121,sDtsT); 
-      CicloDato(121); 
+      CicloDato(121,"T"+sNumer); 
     }
   return;
 }
-void BuzzerITwoC(String sActivo,String sTempo){
-    //SalidaITwoC(121,sTempo,sActivo);
+void BuzzerITwoC(String sBzz,String sTempo){
     String sDtsB;
+    int nBzz = sBzz.toInt();
     int nTempo = sTempo.toInt();
-if(sActivo == " " or sTempo == " " or sActivo == "" or sTempo == ""){
-    Serial.print("B;"); 
-    Serial.println("X");  }
-else {
-      sDtsB = "B;"+sActivo+";"+sTempo+";";
-      I2CTX(121,sDtsB); 
-  }
+    if(sTempo == "" or sTempo == " "){
+      Serial.print(sTempo); 
+      Serial.println(";X");  }
+    else {
+    switch (nBzz) {
+      case 0:
+          sDtsB = "B;1;"+sTempo;
+          I2CTX(121,sDtsB);
+          break;
+      case 1:
+          sDtsB = "B;1;"+sTempo;
+          I2CTX(121,sDtsB);
+          CicloDato(121,"B1"); 
+          break;
+      default:
+          Serial.print(nBzz); 
+          Serial.println("X");  
+          break;
+      }
+    }
   return;
 }
 
 void Herramientas_Principales_Salida(String sNum,String sActi){ //1 activo o 0 Desactivado
   int nNum = sNum.toInt();
   int nActi = sActi.toInt();
+  String sVlr = "SM";
   if (nActi >= 2){
     nNum=0;
-    Serial.print("P;");
-    Serial.print(sNum); 
+    Serial.print(sVlr); 
     Serial.println(";X"); 
   }
     switch(nNum){
       case 0:
           break;
       case 1:
-          SalidaITwoC(125,"1",sActi);
+          SalidaITwoC(122,"1",sActi,sVlr);
           break;
       case 2:
-          SalidaITwoC(126,"1",sActi);
+          SalidaITwoC(123,"1",sActi,sVlr);
           break;
       case 3:
-          SalidaITwoC(127,"1",sActi);
+          SalidaITwoC(124,"1",sActi,sVlr);
           break;
       default:
-          Serial.print("P;");
-          Serial.print(sNum); 
+          Serial.print(sVlr);
           Serial.println(";X"); 
           break;
       
@@ -58,10 +70,10 @@ void Herramientas_Principales_Salida(String sNum,String sActi){ //1 activo o 0 D
 }
 
 void Herramientas_principal_entradas(String sCarta,String sToolPx){
-      String sDtsEnx = "E;"+sToolPx+";";
+      String sDtsEnx = "EM;"+sToolPx;
       int nCarta = sCarta.toInt();
       I2CTX(nCarta,sDtsEnx);
-      CicloDato(nCarta);
+      CicloDato(nCarta,"EM;"+sToolPx);
    return;
 }
   

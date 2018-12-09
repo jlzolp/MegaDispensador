@@ -7,8 +7,8 @@ String sStrRc="";
 int nCount = 0;
 int nCartucho = sCart.toInt();
 int nCantidad = sCant.toInt();
-String sDts = sQHacer+";"+sCart+";"+sCant+";";
-
+//String sDts = sQHacer+";"+sCart+";"+sCant+";";
+String sDts = sQHacer+";"+sCant+";";
 if(sCart == " " or sCant == " " or sCart == "" or sCant == "" ){
     Serial.print(sCart);
     Serial.println(";X");  }
@@ -30,15 +30,11 @@ else {
             bCiclo = false; 
           }      
           if (sStrI2c == "E"){
-            BuzzerITwoC("1","500");
-            //Buzzer(1);
+            BuzzerITwoC("0","500");
             sStrI2c="";
-            //sIdI2c="";
             sDatI2c="";
             nCantidad = nCantidad-1;
             nCount = nCount + 1;
-            //Serial.println(nCantidad);
-            //delay(2000);
           }
         }
       }

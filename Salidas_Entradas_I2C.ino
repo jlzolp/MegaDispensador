@@ -1,29 +1,29 @@
-void SalidaITwoC(String sCartaS, String sToolS,String sActivoS){
+void SalidaITwoC(String sCartaS, String sToolS,String sActivoS,String sVarible){
   int nCartaS = sCartaS.toInt();
-  String sDtsS = "S;"+sToolS+";"+sActivoS+";";
+  String sDtsS = sVarible+";"+sToolS+";"+sActivoS;
 if(sToolS == " " or sActivoS == " " or sToolS == "" or sActivoS == "" or nCartaS < 120 or nCartaS == 0){
     Serial.print(sToolS); 
     Serial.println("X");  }
 else {
   I2CTX(nCartaS,sDtsS);
-  CicloDato(nCartaS);  
+  CicloDato(nCartaS,sVarible+";"+sToolS);  
   }
   return;
 }
 void EntradaITwoC(String sCartaE, String sToolE){
   int nCartaE = sCartaE.toInt();
-  String sDtsE = "E;"+sCartaE+";"+sToolE+";";
+  String sDtsE = "EH;"+sCartaE+";"+sToolE;
 if(sToolE == " " or sToolE == "" or nCartaE < 120 or nCartaE == 0){
   Serial.print(sToolE); 
-  Serial.println("X");  }
+  Serial.println(";X");  }
 else {
   I2CTX(nCartaE,sDtsE);
-  CicloDato(nCartaE);  
+  CicloDato(nCartaE,"EH;"+sCartaE);  
   }
   return;
 }
 
-void CicloDato(int nComp){
+void CicloDato(int nComp,String sQs){
   boolean bCicloI2c = true;
   String sStrI2c2="";
   String sStrI2c3="";
@@ -39,13 +39,11 @@ void CicloDato(int nComp){
         nIdI2c2 = sIdI2c2.toInt(); 
         if(nIdI2c2 == nComp){
             Serial.print(sStrI2c2); 
-            Serial.print(";");
-            Serial.print(sIdI2c2); 
             Serial.print(";"); 
             Serial.println(sStrI2c3);
             sIdI2c2=""; 
             sStrI2c2="";
-            //sStrI2c2="";
+            sStrI2c3="";
             sDatI2c="";
             bCicloI2c = false;
             break;
@@ -53,7 +51,7 @@ void CicloDato(int nComp){
       }   
       inCharR = (char)Serial.read();//  cancelar no debe llevar salto de linea
       if (inCharR == 'X'){
-            Serial.print(nComp);
+            Serial.print(sQs);
             Serial.println(";X");
             I2CTX(nComp,"X");
             inCharR=' ';
@@ -65,5 +63,3 @@ void CicloDato(int nComp){
     }
     return;
 }
-
-
